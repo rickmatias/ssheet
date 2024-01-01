@@ -1,4 +1,4 @@
-import Model from './Model';
+import Model from '@mdev-js/model';
 import { differenceInSeconds, isDate, isSameMinute } from 'date-fns';
 
 /**
