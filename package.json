@@ -1,6 +1,6 @@
 {
   "name": "@mdev-js/ssheet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SSheet is a class that represents a Google Sheet with super powers.",
   "main": "ssheet.js",
   "scripts": {
