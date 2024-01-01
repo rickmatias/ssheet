@@ -1,0 +1,32 @@
+{
+  "name": "@mdev-js/ssheet",
+  "version": "1.0.0",
+  "description": "SSheet is a class that represents a Google Sheet with super powers.",
+  "main": "ssheet.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rickmatias/ssheet.git"
+  },
+  "keywords": [
+    "Google",
+    "Apps",
+    "Script",
+    "GAS",
+    "google-apps-script",
+    "Google",
+    "Sheets"
+  ],
+  "author": "rickmatias",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rickmatias/ssheet/issues"
+  },
+  "homepage": "https://github.com/rickmatias/ssheet#readme",
+  "dependencies": {
+    "@mdev-js/model": "^1.0.0",
+    "date-fns": "^2.30.0"
+  }
+}
