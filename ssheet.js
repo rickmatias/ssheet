@@ -52,9 +52,6 @@ const mergeThreeDimensionalArrays = (arrayA, arrayB) => {
  * @class SSheet
  */
 export default class SSheet {
-  static MODE_ONLY_CHANGES = 'only-changes';
-  static MODE_FULL = 'full';
-
   /**
    * @param {ConstructorParams} params
    */
