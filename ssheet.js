@@ -105,14 +105,12 @@ export default class SSheet {
     /**
      * @type {number}
      * @private
-     * @default 1
      */
     this._headerRow = undefined;
 
     /**
      * @type {boolean}
      * @private
-     * @default false
      */
     this._inTransaction = false;
 
@@ -125,7 +123,6 @@ export default class SSheet {
     /**
      * @type {Date}
      * @private
-     * @default undefined
      */
     this._lastRefreshInCache = undefined;
 
@@ -144,30 +141,26 @@ export default class SSheet {
     /**
      * @type {object}
      * @private
-     * @default {}
      */
     this._parameterMap = undefined;
 
     /**
      * @type {object}
      * @private
-     * @default {}
      */
     this._rangesA1 = undefined;
 
     /**
      * @type {object}
      * @private
-     * @default {}
      */
     this._rangesWithFormulas = undefined;
 
     /**
      * @type {string[]}
      * @private
-     * @default undefined
      */
-    this._readOnlyKeys = undefined;
+    this._readOnlyKeys = [];
 
     /**
      * @type {Sheet}
@@ -184,7 +177,6 @@ export default class SSheet {
     /**
      * @type {boolean}
      * @private
-     * @default false
      */
     this._keepSheetHidden = false;
   }
@@ -911,9 +903,6 @@ export default class SSheet {
   save(data) {
     const { columnMap, entity, lastRefreshInCache, primaryKey, readOnlyKeys, sheet } = this;
 
-    /** @type {string[][]} */
-    const columnMapEntries = Object.entries(columnMap);
-
     /** @type {any[][]} */
     const valuesToAppend = [];
 
@@ -948,21 +937,24 @@ export default class SSheet {
       const modelIsObservable = Model.isObservable(model);
       const getFullRowObject = !(rowNumber && modelIsObservable);
 
-      const rowObject = columnMapEntries.reduce(
-        (obj, [key, columnName]) => {
-          if (
-            getFullRowObject ||
-            primaryKey.includes(columnName) ||
-            (modelIsObservable && model.hasChanged(key))
-          ) {
-            obj[columnName] = model[key];
-          }
-          return obj;
-        },
-        { rowNumber }
-      );
-      return rowObject;
-    }
+      if(columnMap){
+        return Object.entries(columnMap).reduce(
+          (obj, [key, columnName]) => {
+            if (
+              getFullRowObject ||
+              primaryKey.includes(columnName) ||
+              (modelIsObservable && model.hasChanged(key))
+            ) {
+              obj[columnName] = model[key];
+            }
+            return obj;
+          },
+          { rowNumber }
+        );
+      }else{
+        return model.toJSON();
+      }
+    };
 
     /**
      * @param {RowObject} rowObject
